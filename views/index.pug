@@ -1,6 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  form(name='dataInput' action = '/api' id = 'myForm')
+    h1= title
+    p Welcome to #{title}
+    form(name='dataInput' action = '/api' id = 'myForm' method='post')
+        | First Name
+        |
+        input(name = 'firstName')
+        br
+        | Last Name
+        |
+        input(name = 'lastName')
+        br
+        input(type='submit' value = 'Submit')

@@ -1,19 +1,25 @@
+const bodyparser = require('body-parser');
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const mongoClient = require('mongodb').MongoClient;
-mongoClient.connect('mongodb://localhost:27017/names',function(err,db){
-    if(err) throw err;
-    console.log("names database created");
-})
-
+const mongoose =require('mongoose');
+mongoose.connect('mongodb://localhost:27017/names');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+    console.log("Connected to database")
+});
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const apiRouter = require('./routes/api');
 
+
 const app = express();
+// middleware
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded( {extended: true} ));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

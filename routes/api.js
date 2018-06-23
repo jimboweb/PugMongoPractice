@@ -1,17 +1,45 @@
 const express = require('express');
+const Name = require('../models/Name.js');
 const router = express.Router();
 
-/* GET api calls */
-router.get('/', function(req, res, next) {
-    res.send('api listening');
-    next();
+
+router.post('/',function (req,res) {
+    let name = req.body;
+    console.log(name);
+
+    Name.create(name, function(err, name) {
+
+        // check errors
+        if(err) {
+            console.log(err);
+            throw err;
+        }
+
+        // carry on
+        else {
+            // send response
+            res.json(name);
+        }
+    });
 });
 
-router.post('/',function (req,res,next) {
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
-    res.send("Your name is " + firstName + " " + lastName);
-    next();
-})
+// http get
+router.get("/", function(request, response) {
+
+    Name.read(function(err, names) {
+
+        // check errors
+        if(err) {
+            console.log(err);
+            throw err;
+        }
+
+        // carry on
+        else {
+            // send response
+            response.json(names);
+        }
+    });
+});
 
 module.exports = router;

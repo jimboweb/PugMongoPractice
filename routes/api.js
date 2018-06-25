@@ -23,8 +23,18 @@ router.post('/',function (req,res) {
     });
 });
 
+//FIXME: this doesn't work right now
+router.get('/id',function(req,res){
+   Name.findById(req.params.id,function(err, name){
+     if(err){
+      return console.error(err); 
+     }
+     res.json(name);
+   });
+});
+
 // http get
-router.get("/", function(request, response) {
+router.get('/', function(request, response) {
 
     Name.read(function(err, names) {
 
@@ -41,5 +51,6 @@ router.get("/", function(request, response) {
         }
     });
 });
+
 
 module.exports = router;

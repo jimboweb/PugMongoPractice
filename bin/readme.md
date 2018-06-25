@@ -1,0 +1,1 @@
+A basic pug express template connected to Monngodb with mongoose. 

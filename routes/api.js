@@ -23,7 +23,7 @@ router.post('/',function (req,res) {
     });
 });
 
-//FIXME: this doesn't work right now
+
 router.get('/id',function(req,res){
    Name.findById(req.params.id,function(err, name){
      if(err){

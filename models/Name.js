@@ -23,8 +23,12 @@ function read(callback) {
     Name.find(callback);
 }
 
+//FIXME: this doesn't work right now
+function findById(id,callback){
+   Name.findById(id,callback); 
+}
 
-function update(date, weight, callback) {
+function update(first, last, callback) {
 
     let query   = {first: String};
     let update  = {last: String};
@@ -47,3 +51,4 @@ exports.create  = create;
 exports.read    = read;
 exports.update  = update;
 exports.destroy = destroy;
+exports.findById = findById;

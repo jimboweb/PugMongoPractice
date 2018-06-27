@@ -5,7 +5,11 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose =require('mongoose');
-mongoose.connect('mongodb://localhost:27017/names');
+const mlabUser = process.env.MLABUSER;
+const mlabPw = process.env.MLABPW;
+let uri = 'mongodb://' + mlabUser + ':' + mlabPw + '@ds018268.mlab.com:18268/jimdb';
+console.log('uri = ' + uri);
+mongoose.connect(uri);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {

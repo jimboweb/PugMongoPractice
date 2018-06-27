@@ -13,3 +13,11 @@ block content
         input(name = 'last')
         br
         input(type='submit' value = 'Submit')
+        
+    div
+      form(name='searchById' action = 'api/id' id = 'searchForm' method = 'get')
+        |Search by Id:
+        |
+        input(name = 'id')
+        br
+        input(type = 'submit' value = 'Search')

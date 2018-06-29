@@ -1,3 +1,4 @@
+require('dotenv').load();
 const bodyparser = require('body-parser');
 const createError = require('http-errors');
 const express = require('express');

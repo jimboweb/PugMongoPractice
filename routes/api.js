@@ -23,9 +23,10 @@ router.post('/',function (req,res) {
     });
 });
 
-
+//OK got it, req.params is the route, req.query is the query
+//TODO: make a function to pass params as a route
 router.get('/id',function(req,res){
-   Name.findById(req.params.id,function(err, name){
+   Name.findById(req.query.id,function(err, name){
      if(err){
       return console.error(err); 
      }
